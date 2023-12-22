@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import Spreadsheet from 'react-spreadsheet';
+import './App.css'
+import { GenerateSpreadsheet } from './components/GenerateSpreadsheet';
+import { Home } from './components/Home';
+import { Navbar } from "./components/Navbar";
+import { BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
+import { GeneratedSpreadsheet } from './components/GeneratedSpreadsheet';
+import { AttributesProvider, DataProvider } from './AttributesContext';
 
-function App() {
+const App = () => {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <AttributesProvider>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="generate-spreadsheet" element={<GenerateSpreadsheet />} />
+        <Route path="spreadsheet-manager" element={<GeneratedSpreadsheet />} />
+      </Routes>
+    </Router>
+    </AttributesProvider>
+  )
+};
 
 export default App;
